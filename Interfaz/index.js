@@ -15,6 +15,8 @@ const server = app.listen(4000, () => {
 const io = socketIo.listen(server);
 
 io.on('connection', socket => {
+    console.log('Usuario conectado...');
+    io.emit('ready', {state: 'ready'});
     socket.on('on', data => {
         axios.get(url + '/H')
         .then(res => console.log(res))
